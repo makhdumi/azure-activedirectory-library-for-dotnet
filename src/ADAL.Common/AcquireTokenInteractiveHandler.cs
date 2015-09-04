@@ -101,15 +101,7 @@ namespace Microsoft.IdentityModel.Clients.ActiveDirectory
             string uniqueId = (result.UserInfo != null && result.UserInfo.UniqueId != null) ? result.UserInfo.UniqueId : "NULL";
             string displayableId = (result.UserInfo != null) ? result.UserInfo.DisplayableId : "NULL";
 
-            if (this.UserIdentifierType == UserIdentifierType.UniqueId && string.Compare(uniqueId, this.UniqueId, StringComparison.Ordinal) != 0)
-            {
-                throw new AdalUserMismatchException(this.UniqueId, uniqueId);
-            }
 
-            if (this.UserIdentifierType == UserIdentifierType.RequiredDisplayableId && string.Compare(displayableId, this.DisplayableId, StringComparison.OrdinalIgnoreCase) != 0)
-            {
-                throw new AdalUserMismatchException(this.DisplayableId, displayableId);
-            }
         }
 
         private Uri CreateAuthorizationUri(bool includeFormsAuthParam)
